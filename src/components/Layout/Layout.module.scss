@@ -1,0 +1,48 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+.container {
+   background-color: #1E252E;
+   color: white;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+   background-color: #141A1F;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+   padding: 16px 40px;
+   height: 12vh;
+}
+
+.header h1 {
+   font-size: 32px;
+   font-weight: 800;
+}
+
+.nav {
+   display: flex;
+   flex-direction: row;
+   gap: 16px;
+}
+
+.navlink {
+   color: white;
+   text-decoration: none;
+   font-weight: 600;
+   font-size: 20px;
+}
+
+.navlink:hover {
+   opacity: 0.7;
+}
+
+.main {
+   height: 88vh;
+   background-color: #1E252E;
+}
