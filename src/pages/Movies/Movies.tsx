@@ -2,8 +2,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useFetchMovies } from "../../hooks/useFetchMovies";
 import { Link, useNavigate } from "react-router-dom";
 import { MovieCard } from "../../components/MovieCard/MovieCard";
-import { LoadingPage } from "../Loading/Loading";
-import { ErrorPage } from "../Error/Error";
+import { Loading } from "../Loading/Loading";
+import { Error } from "../Error/Error";
 import styles from './Movies.module.scss'
 
 export function Movies () {
@@ -50,11 +50,11 @@ export function Movies () {
       prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id])
    }, [])
 
-   if(loading) return <LoadingPage />
+   if(loading) return <Loading />
 
    if(error) {
       return (
-         <ErrorPage
+         <Error
             message={error}
             onRetry={() => fetchMovies()}
          />

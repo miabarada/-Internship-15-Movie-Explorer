@@ -1,0 +1,47 @@
+.movie {
+   display: flex;
+   flex-direction: row;
+   gap: 40px;
+   padding: 40px;
+}
+
+.poster {
+   background-image: url('../../assets/poster.jpg');
+   min-width: 350px;
+   height: 500px;
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+
+.details {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
+
+.details h2 {
+   font-size: 32px;
+}
+
+.details p {
+   font-size: 20px;
+}
+
+.actions {
+   display: flex;
+   flex-direction: row;
+   gap: 8px;
+}
+
+.actions button {
+   background-color: #141A1F;
+   border: none;
+   padding: 16px;
+   cursor: pointer;
+   color: white;
+   font-size: 20px;
+   margin-top: 16px;
+   border-radius: 12px;
+   font-weight: 600;
+}

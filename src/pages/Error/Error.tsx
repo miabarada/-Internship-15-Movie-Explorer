@@ -5,7 +5,7 @@ type ErrorPageProps = {
    onRetry?: () => void
 }
 
-export function ErrorPage({ message, onRetry }: ErrorPageProps) {
+export function Error({ message, onRetry }: ErrorPageProps) {
    return (
       <section className={styles.error}>
          <h2>Something went wrong</h2>

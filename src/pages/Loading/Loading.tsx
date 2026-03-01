@@ -1,6 +1,6 @@
 import styles from './Loading.module.scss'
 
-export function LoadingPage() {
+export function Loading() {
    return (
       <section className={styles.loading}>
          <h2>Loading...</h2>

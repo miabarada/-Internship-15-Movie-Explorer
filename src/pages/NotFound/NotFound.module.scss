@@ -1,0 +1,26 @@
+.notFound {
+   width: 100%;
+   padding: 120px 040px;
+   display: flex;
+   flex-direction: column;
+   gap: 24px;
+   align-items: center;
+   justify-content: center;
+}
+
+.notFound h2 {
+   font-size: 56px;
+   text-align: center;
+   font-weight: 800;
+}
+
+.notFound button {
+   font-weight: 700;
+   font-size: 24px;
+   padding: 20px;
+   background-color: #141A1F;
+   border: none;
+   color: white;
+   border-radius: 12px;
+   cursor: pointer;
+}
