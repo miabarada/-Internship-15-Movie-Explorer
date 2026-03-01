@@ -1,4 +1,4 @@
-.taskCard {
+.movieCard {
    display: flex;
    flex-direction: row;
    align-items: flex-start;
@@ -6,6 +6,7 @@
    background-color: #141A1F;
    justify-content: space-between;
    border-radius: 16px;
+   cursor: pointer;
 }
 
 .title {

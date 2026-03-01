@@ -4,6 +4,7 @@ export type Movie = {
    genre: string
    year: number
    description: string
+   rating: number
 }
 
 export const movies: Movie[] = [
@@ -12,139 +13,159 @@ export const movies: Movie[] = [
       title: "Inception",
       year: 2010,
       genre: "Sci-fi",
-      description: "A thief who steals corporate secrets through dream-sharing technology."
+      description: "A thief who steals corporate secrets through dream-sharing technology.",
+      rating: 9.2
    },
    {
       id: 2,
       title: "Good Will Hunting",
       year: 1997,
       genre: "Drama",
-      description: "A boy with undiscovered talent finds his path."
+      description: "A boy with undiscovered talent finds his path.",
+      rating: 9.6
    },
    {
       id: 3,
       title: "The Dark Knight",
       year: 2008,
       genre: "Action",
-      description: "Batman faces the Joker in a battle for Gotham's soul."
+      description: "Batman faces the Joker in a battle for Gotham's soul.",
+      rating: 8.7
    },
    {
       id: 4,
       title: "Interstellar",
       year: 2014,
       genre: "Sci-fi",
-      description: "A team of explorers travel through a wormhole in space."
+      description: "A team of explorers travel through a wormhole in space.",
+      rating: 9.0
    },
    {
       id: 5,
       title: "Titanic",
       year: 1997,
       genre: "Romance",
-      description: "A love story unfolds aboard the ill-fated Titanic."
+      description: "A love story unfolds aboard the ill-fated Titanic.",
+      rating: 8.7
    },
    {
       id: 6,
       title: "The Matrix",
       year: 1999,
       genre: "Sci-fi",
-      description: "A hacker discovers reality is a simulation."
+      description: "A hacker discovers reality is a simulation.",
+      rating: 7.8
    },
    {
       id: 7,
       title: "Forrest Gump",
       year: 1994,
       genre: "Drama",
-      description: "The story of a man who influences historical events."
+      description: "The story of a man who influences historical events.",
+      rating: 8.3
    },
    {
       id: 8,
       title: "Pulp Fiction",
       year: 1994,
       genre: "Crime",
-      description: "Interwoven stories of crime in Los Angeles."
+      description: "Interwoven stories of crime in Los Angeles.",
+      rating: 7.4
    },
    {
       id: 9,
       title: "The Shawshank Redemption",
       year: 1994,
       genre: "Drama",
-      description: "Two imprisoned men bond over years."
+      description: "Two imprisoned men bond over years.",
+      rating: 8.1
    },
    {
       id: 10,
       title: "Fight Club",
       year: 1999,
       genre: "Drama",
-      description: "An insomniac and a soap salesman form an underground club."
+      description: "An insomniac and a soap salesman form an underground club.",
+      rating: 9.2
    },
    {
       id: 11,
       title: "Gladiator",
       year: 2000,
       genre: "Action",
-      description: "A Roman general seeks revenge."
+      description: "A Roman general seeks revenge.",
+      rating: 6.4
    },
    {
       id: 12,
       title: "The Godfather",
       year: 1972,
       genre: "Crime",
-      description: "The aging patriarch of an organized crime dynasty transfers control."
+      description: "The aging patriarch of an organized crime dynasty transfers control.",
+      rating: 7.4
    },
    {
       id: 13,
       title: "Avatar",
       year: 2009,
       genre: "Sci-fi",
-      description: "A marine on an alien planet becomes torn between worlds."
+      description: "A marine on an alien planet becomes torn between worlds.",
+      rating: 7.1
    },
    {
       id: 14,
       title: "The Lord of the Rings",
       year: 2001,
       genre: "Fantasy",
-      description: "A hobbit sets out to destroy a powerful ring."
+      description: "A hobbit sets out to destroy a powerful ring.",
+      rating: 8.2
    },
    {
       id: 15,
       title: "Joker",
       year: 2019,
       genre: "Drama",
-      description: "A troubled man descends into madness."
+      description: "A troubled man descends into madness.",
+      rating: 6.9
    },
    {
       id: 16,
       title: "Whiplash",
       year: 2014,
       genre: "Drama",
-      description: "A young drummer pursues greatness."
+      description: "A young drummer pursues greatness.",
+      rating: 7.4
    },
    {
       id: 17,
       title: "The Social Network",
       year: 2010,
       genre: "Drama",
-      description: "The founding of Facebook."
+      description: "The founding of Facebook.",
+      rating: 5.8
    },
    {
       id: 18,
       title: "Parasite",
       year: 2019,
       genre: "Thriller",
-      description: "A poor family schemes to become employed by a wealthy family."
+      description: "A poor family schemes to become employed by a wealthy family.",
+      rating: 7.9
    },
    {
       id: 19,
       title: "The Silence of the Lambs",
       year: 1991,
       genre: "Thriller",
-      description: "An FBI trainee seeks help from a cannibalistic serial killer."
+      description: "An FBI trainee seeks help from a cannibalistic serial killer.",
+      rating: 9.1
    },
    {
       id: 20,
       title: "Top Gun",
       year: 1986,
       genre: "Action",
-      description: "A young naval aviator trains to be a top pilot."
+      description: "A young naval aviator trains to be a top pilot.",
+      rating: 6.8
    }
 ]

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useFetchMovies } from "../../hooks/useFetchMovies";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MovieCard } from "../../components/MovieCard/MovieCard";
 import { LoadingPage } from "../Loading/Loading";
 import { ErrorPage } from "../Error/Error";
@@ -8,11 +8,12 @@ import styles from './Movies.module.scss'
 
 export function Movies () {
    const [search, setSearch] = useState("")
-   const [sortBy, setSortBy] = useState<"id" | "year">("id")
+   const [sortBy, setSortBy] = useState<"id" | "year" | "rating">("id")
    const [favorites, setFavorites] = useState<number[]>([])
    const searchRef = useRef<HTMLInputElement | null>(null)
+   const navigate = useNavigate()
 
-   const {data, loading, error} = useFetchMovies()
+   const {data, loading, error, fetchMovies} = useFetchMovies()
 
    useEffect(() => {
       searchRef.current?.focus()
@@ -36,6 +37,9 @@ export function Movies () {
          case "year":
             sorted.sort((a, b) => a.year-b.year)
             break
+         case "rating":
+            sorted.sort((a, b) => a.rating-b.rating)
+            break
       }
 
       return sorted
@@ -52,7 +56,7 @@ export function Movies () {
       return (
          <ErrorPage
             message={error}
-            onRetry={() => useFetchMovies()}
+            onRetry={() => fetchMovies()}
          />
       )
    }
@@ -69,28 +73,30 @@ export function Movies () {
                onChange={(e) => setSearch(e.target.value)} 
                className={styles.input}
             />
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value === "year" ? "year" : "id")} className={styles.dropdown}>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value === "year" ? "year" : e.target.value === "id" ? "id" : "rating")} className={styles.dropdown}>
                <option value="id">ID (asc)</option>
                <option value="year">year (asc)</option>
+               <option value="rating">rating (asc)</option>
             </select>
          </div>
 
          <div className={styles.movieList}>
             {visibleMovies.map((movie) => (
-               <Link
+               <div
                   key={movie.id}
-                  to={`/movies/${movie.id}`}
-                  style={{textDecoration: "none", color: "inherit"}}>
+                  onClick={() => navigate(`/movies/${movie.id}`)}>
+                  
                   <MovieCard 
                      id={movie.id}
                      title={movie.title}
                      genre={movie.genre}
                      year={movie.year}
                      description={movie.description}
+                     rating = {movie.rating}
                      isFavorite={favorites.includes(movie.id)}
                      onToggleFavorite={handleToggleFavorite}
                   />
-               </Link>
+               </div>
             ))}
          </div>
       </section>
