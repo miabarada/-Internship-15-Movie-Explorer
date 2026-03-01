@@ -82,7 +82,10 @@ export function Movies () {
          </div>
 
          <div className={styles.movieList}>
-            {visibleMovies.map((movie) => (
+            {visibleMovies.length === 0 ? (
+               <p>No Movies found.</p>
+            ) : 
+            visibleMovies.map((movie) => (
                <div
                   key={movie.id}
                   onClick={() => navigate(`/movies/${movie.id}`)}>

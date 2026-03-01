@@ -46,3 +46,15 @@
    height: 88vh;
    background-color: #1E252E;
 }
+
+@media (max-width: 700px) {
+   .header h1 {
+      font-size: 24px;
+      font-weight: 800;
+   }
+
+   .navlink {
+      font-size: 12px;
+   }
+   
+}
