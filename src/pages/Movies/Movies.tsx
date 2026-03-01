@@ -5,11 +5,12 @@ import { MovieCard } from "../../components/MovieCard/MovieCard";
 import { Loading } from "../Loading/Loading";
 import { Error } from "../Error/Error";
 import styles from './Movies.module.scss'
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 export function Movies () {
    const [search, setSearch] = useState("")
    const [sortBy, setSortBy] = useState<"id" | "year" | "rating">("id")
-   const [favorites, setFavorites] = useState<number[]>([])
+   const [favorites, setFavorites] = useLocalStorage<number[]>("favorites", [])
    const searchRef = useRef<HTMLInputElement | null>(null)
    const navigate = useNavigate()
 
@@ -48,7 +49,7 @@ export function Movies () {
    const handleToggleFavorite = useCallback((id: number) => {
       setFavorites((prev) => 
       prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id])
-   }, [])
+   }, [setFavorites])
 
    if(loading) return <Loading />
 

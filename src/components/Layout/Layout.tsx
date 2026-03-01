@@ -13,6 +13,7 @@ export function Layout({children}: LayoutProps) {
             <nav className={styles.nav}>
                <NavLink to="/" className={styles.navlink}>Dashboard</NavLink>
                <NavLink to="/movies" className={styles.navlink}>Movies</NavLink>
+               <NavLink to="/favorites" className={styles.navlink}>Favorites</NavLink>
             </nav>
          </header>
          <main className={styles.main}>{children}</main>

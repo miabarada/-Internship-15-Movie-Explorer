@@ -3,6 +3,7 @@ import { movies } from "../../data/movies";
 import { useEffect, useState } from "react";
 import { NotFound } from "../NotFound/NotFound";
 import styles from './MovieDetails.module.scss'
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 export function MovieDetails() {
    const {id} = useParams()
@@ -11,10 +12,11 @@ export function MovieDetails() {
    const movieId = Number(id)
    const movie = movies.find((m) => m.id === movieId)
 
-   const [isFavorite, setIsFavorite] = useState(false)
+   const [favorites, setFavorites] = useLocalStorage<number[]>("favorites", [])
+   const isFavorite = favorites.includes(movieId)
 
    const handleToggleFavorite = () => {
-      setIsFavorite((prev) => !prev)
+      setFavorites(prev => prev.includes(movieId) ? prev.filter(id => id !== movieId) : [...prev, movieId])
    }
 
    useEffect(() => {
