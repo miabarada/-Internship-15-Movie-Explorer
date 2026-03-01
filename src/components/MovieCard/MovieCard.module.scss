@@ -1,0 +1,58 @@
+.taskCard {
+   display: flex;
+   flex-direction: row;
+   align-items: flex-start;
+   padding: 20px;
+   background-color: #141A1F;
+   justify-content: space-between;
+   border-radius: 16px;
+}
+
+.title {
+   display: flex;
+   flex-direction: column;
+}
+
+.movieTitle{
+   font-size: 28px;
+}
+
+.label {
+   font-size: 16px;
+   opacity: 0.6;
+}
+
+.title p {
+   font-size: 16px;
+   opacity: 0.6;
+}
+
+.info {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+.favorite {
+   width: 48px;
+   height: 48px;
+   background-image: url(../../assets/favorite.svg);
+   background-position: center;
+   border: none;
+   background-color: #1E252E;
+   background-repeat: no-repeat;
+   border-radius: 8px;
+   cursor: pointer;
+}
+
+.notFavorite {
+   width: 48px;
+   height: 48px;
+   background-image: url(../../assets/notFavorite.svg);
+   background-position: center;
+   border: none;
+   background-color: #1E252E;
+   background-repeat: no-repeat;
+   border-radius: 8px;
+   cursor: pointer;
+}

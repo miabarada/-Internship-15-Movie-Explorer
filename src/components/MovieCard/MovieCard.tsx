@@ -20,7 +20,7 @@ export function MovieCard({ id, title, genre, year, description, isFavorite, onT
       <div className={styles.taskCard}>
          <div className={styles.info}>
             <div className={styles.title}>
-               <h3>{title}<span className={styles.label}> | {year}</span></h3>
+               <h3 className={styles.movieTitle}>{title}<span className={styles.label}> | {year}</span></h3>
                <p>{genre}</p>
             </div>
             <p>{description}</p>

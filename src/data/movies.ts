@@ -19,7 +19,7 @@ export const movies: Movie[] = [
       title: "Good Will Hunting",
       year: 1997,
       genre: "Drama",
-      description: "“Good Will Hunting” is the story of how this kid's life edges toward self-destruction and how four people try to haul him back."
+      description: "A boy with undiscovered talent finds his path."
    },
    {
       id: 3,

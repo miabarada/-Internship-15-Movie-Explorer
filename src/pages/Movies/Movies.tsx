@@ -2,6 +2,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useFetchMovies } from "../../hooks/useFetchMovies";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../../components/MovieCard/MovieCard";
+import { LoadingPage } from "../Loading/Loading";
+import { ErrorPage } from "../Error/Error";
+import styles from './Movies.module.scss'
 
 export function Movies () {
    const [search, setSearch] = useState("")
@@ -43,24 +46,36 @@ export function Movies () {
       prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id])
    }, [])
 
+   if(loading) return <LoadingPage />
+
+   if(error) {
+      return (
+         <ErrorPage
+            message={error}
+            onRetry={() => useFetchMovies()}
+         />
+      )
+   }
+
    return (
-      <section>
-         <h2>Movies</h2>
-         <div>
+      <section className={styles.movies}>
+         <h2 className={styles.title}>Movies</h2>
+         <div className={styles.filters}>
             <input  
                type="search" 
                ref={searchRef} 
                placeholder="Search movies..." 
                value={search} 
                onChange={(e) => setSearch(e.target.value)} 
+               className={styles.input}
             />
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value === "year" ? "year" : "id")}>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value === "year" ? "year" : "id")} className={styles.dropdown}>
                <option value="id">ID (asc)</option>
-               <option value="year">yeard (asc)</option>
+               <option value="year">year (asc)</option>
             </select>
          </div>
 
-         <div>
+         <div className={styles.movieList}>
             {visibleMovies.map((movie) => (
                <Link
                   key={movie.id}

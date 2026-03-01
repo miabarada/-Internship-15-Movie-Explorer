@@ -1,0 +1,42 @@
+.movies {
+   background-color: #1E252E;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+   padding: 40px;
+}
+
+.title {
+   font-size: 60px;
+   font-weight: 900;
+}
+
+.filters {
+   display: flex;
+   flex-direction: row;
+   gap: 8px;
+}
+
+.input {
+   font-size: 16px;
+   padding: 8px;
+   border: none;
+   border-radius: 4px;
+   background-color: #141A1F;
+   color: white;
+}
+
+.dropdown {
+   font-size: 16px;
+   padding: 8px;
+   border: none;
+   border-radius: 4px;
+   background-color: #141A1F;
+   color: white;
+}
+
+.movieList {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
