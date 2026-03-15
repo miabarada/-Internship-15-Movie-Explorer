@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import styles from './Favorites.module.scss'
-import { movies } from '../../data/movies'
 import { MovieCard } from '../../components/MovieCard/MovieCard'
+import { useFetchMovies } from '../../hooks/useFetchMovies'
 
 export function Favorites() {
    const [favorites, setFavorites] = useLocalStorage<number[]>("favorites", [])
    const navigate = useNavigate()
+
+   const { data: movies, loading, error } = useFetchMovies()
 
    const favoriteMovies = movies.filter(m => favorites.includes(m.id));
 
@@ -31,7 +33,6 @@ export function Favorites() {
                         <MovieCard
                             id={movie.id}
                             title={movie.title}
-                            genre={movie.genre}
                             year={movie.year}
                             description={movie.description}
                             rating={movie.rating}

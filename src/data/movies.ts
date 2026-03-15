@@ -1,4 +1,4 @@
-export type Movie = {
+/*export type Movie = {
    id: number
    title: string
    genre: string
@@ -168,4 +168,4 @@ export const movies: Movie[] = [
       description: "A young naval aviator trains to be a top pilot.",
       rating: 6.8
    }
-]
+]*/

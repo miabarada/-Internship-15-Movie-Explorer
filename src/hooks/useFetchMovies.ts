@@ -1,25 +1,40 @@
 import { useEffect, useState } from "react"
-import { movies, Movie } from "../data/movies"
 
-export function useFetchMovies() {
+export interface Movie {
+   id: number
+   title: string
+   year: number
+   rating: number
+   description: string
+   posterUrl: string
+   genres: { id: number; name:string }[] 
+}
+
+const API_URL = "http://localhost:3000"
+
+export function useFetchMovies(params?: { search?: string; sort?: string; genre?: number }) {
    const [data, setData] = useState<Movie[]>([])
    const [loading, setLoading] = useState(true)
    const [error, setError] = useState<string | null>(null)
 
-   const fetchMovies = async (params?: { shouldFail?: boolean }) => {
+   const fetchMovies = async () => {
       try {
-         setLoading(true);
-         setError(null);
-            
-         await new Promise(resolve => setTimeout(resolve, 800))
+         setLoading(true)
+         setError(null)
 
-         if(params?.shouldFail)
+         const query = new URLSearchParams()
+         if (params?.search) query.append("search", params.search)
+         if (params?.sort) query.append("sort", params.sort) // "rating" | "year" | "title"
+         if (params?.genre) query.append("genre", params.genre.toString())
+
+         const res = await fetch(`${API_URL}/movies?${query.toString()}`)
+         if (!res.ok)
             throw new Error("Failed to fetch movies")
 
-         const result = movies
+         const result = await res.json()
          setData(result)
       } catch (error) {
-         setError(error instanceof Error ? error.message : "An error ocurred")
+         setError("An error ocurred")
       } finally {
          setLoading(false)
       }
@@ -27,7 +42,7 @@ export function useFetchMovies() {
 
    useEffect(() => {
       fetchMovies()
-   }, [])
+   }, [params?.search, params?.sort, params?.genre])
 
-   return { data, loading, error, fetchMovies }
+   return { data, loading, error, fetchMovies}
 }

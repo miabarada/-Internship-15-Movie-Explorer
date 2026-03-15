@@ -93,7 +93,6 @@ export function Movies () {
                   <MovieCard 
                      id={movie.id}
                      title={movie.title}
-                     genre={movie.genre}
                      year={movie.year}
                      description={movie.description}
                      rating = {movie.rating}
