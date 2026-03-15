@@ -14,7 +14,17 @@ export function Movies () {
    const searchRef = useRef<HTMLInputElement | null>(null)
    const navigate = useNavigate()
 
-   const {data, loading, error, fetchMovies} = useFetchMovies()
+   const [genre, setGenre] = useState<number | undefined>(undefined)
+   const [genres, setGenres] = useState<string[]>([])
+
+   const {data, loading, error, fetchMovies} = useFetchMovies({search, sort: sortBy, genre})
+
+   useEffect(() => {
+      fetch("/genres")
+         .then((res) => res.json())
+         .then((data) => setGenres(data))
+         .catch(console.error)
+   }, [])
 
    useEffect(() => {
       searchRef.current?.focus()
@@ -79,6 +89,15 @@ export function Movies () {
                <option value="year">year (asc)</option>
                <option value="rating">rating (asc)</option>
             </select>
+
+            <select value={genre ?? ""} onChange={(e) => setGenre(e.target.value ? Number(e.target.value) : undefined)} className={styles.dropdown}>
+               <option value="">All genres</option>
+                  {genres.map((g) => (
+               <option key={g} value={g}>
+                  {g}
+               </option>
+            ))}
+         </select>
          </div>
 
          <div className={styles.movieList}>

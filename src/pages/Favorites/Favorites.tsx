@@ -1,22 +1,50 @@
 import { useNavigate } from 'react-router-dom'
-import { useLocalStorage } from '../../hooks/useLocalStorage'
 import styles from './Favorites.module.scss'
 import { MovieCard } from '../../components/MovieCard/MovieCard'
-import { useFetchMovies } from '../../hooks/useFetchMovies'
+import { useEffect, useState } from 'react'
+
+type Movie = {
+   id: number
+   title: string
+   year: number
+   description: string
+   rating: number
+}
 
 export function Favorites() {
-   const [favorites, setFavorites] = useLocalStorage<number[]>("favorites", [])
+   const [favorites, setFavorites] = useState<Movie[]>([])
+   const [loading, setLoading] = useState(true)
    const navigate = useNavigate()
 
-   const { data: movies, loading, error } = useFetchMovies()
+   const fetchFavorites = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/favorites")
+            const data = await response.json()
+            const movies = data.map((fav: any) => fav.movie)
+            setFavorites(movies)
+        } catch (error) {
+            console.error("Error fetching favorites", error)
+        } finally {
+            setLoading(false)
+        }  
+   }
 
-   const favoriteMovies = movies.filter(m => favorites.includes(m.id));
+    useEffect(() => {
+        fetchFavorites()
+    }, [])
 
-   const handleToggleFavorite = (id: number) => {
-        setFavorites(prev => prev.filter(favId => favId !== id));
-    };
+    const handleToggleFavorite = async (id: number) => {
+        await fetch(`http://localhost:3000/favorites/${id}`, {
+            method: "DELETE",
+        })
 
-    if(favoriteMovies.length === 0) {
+        setFavorites(prev => prev.filter(movie => movie.id !== id))
+   }
+
+    if (loading)
+        return <p>Loading...</p>
+
+    if(favorites.length === 0) {
       return <p className={styles.empty}>No favorite movies yet.</p>
     }
 
@@ -24,7 +52,7 @@ export function Favorites() {
       <section className={styles.favorites}>
             <h2 className={styles.title}>Your Favorites</h2>
             <div className={styles.movieList}>
-                {favoriteMovies.map(movie => (
+                {favorites.map(movie => (
                     <div
                         key={movie.id}
                         onClick={() => navigate(`/movies/${movie.id}`)}
