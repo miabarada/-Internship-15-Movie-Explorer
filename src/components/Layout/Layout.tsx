@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import styles from './Layout.module.scss'
 
 type LayoutProps = {
@@ -6,6 +6,17 @@ type LayoutProps = {
 }
 
 export function Layout({children}: LayoutProps) {
+   const navigate = useNavigate()
+   const token = localStorage.getItem('token')
+
+   const handleLogout = () => {
+      localStorage.removeItem('token')
+      localStorage.removeItem('role')
+
+      navigate('/login')
+      window.location.reload();
+   }
+
    return (
       <div className={styles.container}>
          <header className={styles.header}>
@@ -13,7 +24,11 @@ export function Layout({children}: LayoutProps) {
             <nav className={styles.nav}>
                <NavLink to="/" className={styles.navlink}>Dashboard</NavLink>
                <NavLink to="/movies" className={styles.navlink}>Movies</NavLink>
-               <NavLink to="/favorites" className={styles.navlink}>Favorites</NavLink>
+               {token && (<NavLink to="/favorites" className={styles.navlink}>Favorites</NavLink>)}
+               {token ? (<button onClick={handleLogout} className={styles.navlink}>Logout</button>
+               ) : (
+                  <NavLink to="/login" className={styles.navlink}>Login</NavLink>
+               )}
             </nav>
          </header>
          <main className={styles.main}>{children}</main>
