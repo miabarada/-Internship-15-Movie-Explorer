@@ -3,12 +3,13 @@ import styles from './Favorites.module.scss'
 import { MovieCard } from '../../components/MovieCard/MovieCard'
 import { useEffect, useState } from 'react'
 
-type Movie = {
-   id: number
-   title: string
-   year: number
-   description: string
-   rating: number
+export interface Movie {
+    id: number;
+    title: string;
+    year: number;
+    description: string;
+    rating: number;
+    posterUrl?: string;
 }
 
 export function Favorites() {
@@ -16,9 +17,19 @@ export function Favorites() {
    const [loading, setLoading] = useState(true)
    const navigate = useNavigate()
 
+   const token = localStorage.getItem('token')
+
    const fetchFavorites = async () => {
         try {
-            const response = await fetch("http://localhost:3000/favorites")
+            const response = await fetch("http://localhost:3000/favorites", {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+
+            if(!response.ok)
+                throw new Error("Failed to fetch favorites");
+
             const data = await response.json()
             const movies = data.map((fav: any) => fav.movie)
             setFavorites(movies)
@@ -30,15 +41,28 @@ export function Favorites() {
    }
 
     useEffect(() => {
-        fetchFavorites()
-    }, [])
+        if (token) {
+            fetchFavorites()
+        } else {
+            setLoading(false)
+            navigate('/login')
+        }
+    }, [token])
 
     const handleToggleFavorite = async (id: number) => {
-        await fetch(`http://localhost:3000/favorites/${id}`, {
-            method: "DELETE",
-        })
+        try {
+            const response = await fetch(`http://localhost:3000/favorites/${id}`, {
+                method: "DELETE",
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
 
-        setFavorites(prev => prev.filter(movie => movie.id !== id))
+            if (response.ok) 
+                setFavorites(prev => prev.filter(movie => movie.id !== id))
+        } catch (error) {
+            console.error("Error deleting favorite", error)
+        }        
    }
 
     if (loading)
