@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styles from './Login.module.scss'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function Login() {
    const [email, setEmail] = useState('')
@@ -37,13 +37,14 @@ export function Login() {
 
    return (
       <div className={styles.container}>
-         <h1 className={styles.title}>Prijava</h1>
+         <h1 className={styles.title}>Login</h1>
          {error && <p>{error}</p>}
          <form onSubmit={handleSubmit} className={styles.form}>
             <input type="email" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required className={styles.inputField}/>
             <input type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required  className={styles.inputField} />
             <button type='submit' className={styles.button}>Login</button>
          </form>
+         <p>Don't have an account? <Link to="/register">Register here</Link></p>
       </div>
    )
 }
