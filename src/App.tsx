@@ -6,6 +6,7 @@ import { MovieDetails } from './pages/MovieDetails/MovieDetails'
 import { Favorites } from './pages/Favorites/Favorites'
 import { Login } from './pages/Login/Login'
 import { Register } from './pages/Register/Register'
+import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute'
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path='/register' element={<Register />}></Route>
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/favorites" element={<ProtectedRoute><Favorites /></ProtectedRoute>} />
       </Routes>
     </Layout>
   )
