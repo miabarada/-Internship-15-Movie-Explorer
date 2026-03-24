@@ -29,6 +29,7 @@ export function Layout({children}: LayoutProps) {
                ) : (
                   <NavLink to="/login" className={styles.navlink}>Login</NavLink>
                )}
+               <NavLink to="/manager" className={styles.navlink}>Manager</NavLink>
             </nav>
          </header>
          <main className={styles.main}>{children}</main>

@@ -7,6 +7,7 @@ import { Favorites } from './pages/Favorites/Favorites'
 import { Login } from './pages/Login/Login'
 import { Register } from './pages/Register/Register'
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute'
+import { MovieManager } from './pages/MovieManager/MovieManager'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
         <Route path="/favorites" element={<ProtectedRoute><Favorites /></ProtectedRoute>} />
+        <Route path="/manager" element={<MovieManager />} />
       </Routes>
     </Layout>
   )
